@@ -10,6 +10,13 @@ import {AuthService} from "../services/auth.service";
 export class SignupComponent implements OnInit {
 
     form:FormGroup;
+    errors: string[] = [];
+
+    messagePerErrorCode = {
+        min: 'Minimum 10 characters',
+        uppercase: 'At lest one uppercase letter',
+        digits: 'At least one numeric charactger'
+    }
 
     constructor(private fb: FormBuilder, private authService: AuthService) {
 
@@ -35,7 +42,7 @@ export class SignupComponent implements OnInit {
             this.authService.signUp(val.email, val.password)
                 .subscribe(
                     () => console.log("User created successfully"),
-                    console.error
+                    response => this.errors = response.error.errors
                 );
 
         }
