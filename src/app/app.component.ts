@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "./services/auth.service";
 import {Observable} from "rxjs";
 import {User} from "./model/user";
+import { Router } from 'express';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,10 @@ export class AppComponent  implements OnInit {
     }
 
     logout() {
-
+        this.authService.logout().subscribe(()=> {
+           
+         
+        });
     }
 
 }
