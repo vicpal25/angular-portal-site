@@ -51,6 +51,8 @@ class InMemoryDatabase {
 
         let user = undefined;
 
+        console.log(userId);
+
         if (userId) {
 
             console.log("looking for userId ", userId);

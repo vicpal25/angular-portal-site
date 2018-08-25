@@ -23,8 +23,21 @@ export class AuthService {
     isLoggedOut$: Observable<boolean> = this.isLoggedIn$.pipe(map(isLoggedIn => !isLoggedIn));
 
     constructor(private http: HttpClient) {
+
+        console.log(this.isLoggedIn$);
+        console.log(this.isLoggedOut$);
+        
         http.get<User>('/api/user')
-            .subscribe(user => this.subject.next(user ? user : ANONYMOUS_USER));
+            .subscribe(user => {
+
+                console.log('USER TO BE LOGGED IN', user);
+                
+                this.subject.next(user ? user : ANONYMOUS_USER);
+
+            });
+
+
+
     }
 
     signUp(email:string, password:string ) {
